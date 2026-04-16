@@ -13,7 +13,7 @@ services:
       - db_data:/var/lib/mysql
       - ./banco.sql:/docker-entrypoint-initdb.d/banco.sql:ro
     ports:
-      - "3306:3306"
+      - "3307:3306"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${DB_USER:-pdv_user}", "-p${DB_PASS}"]
       interval: 10s
@@ -38,7 +38,7 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - "8080:80"
+      - "8081:80"
 
 volumes:
   db_data:
