@@ -1,6 +1,6 @@
 {
-    "name": "itamarjuniordev/pdv-system-php",
-    "description": "Sistema PDV - Ponto de Venda",
+    "name": "itamarjuniordev/chefepdv",
+    "description": "ChefePDV — sistema de ponto de venda em PHP puro",
     "type": "project",
     "require": {
         "php": ">=7.4"

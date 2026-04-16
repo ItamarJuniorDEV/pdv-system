@@ -57,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso — PDV System</title>
+    <title>Acesso — ChefePDV</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -227,8 +228,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="login-inner">
 
             <div class="login-logo">
-                <img src="/assets/img/logo.svg" alt="PDV System">
-                <div class="login-logo-name">PDV <span>System</span></div>
+                <img src="/assets/img/logo.svg" alt="ChefePDV">
+                <div class="login-logo-name">Chefe<span>PDV</span></div>
             </div>
 
             <div class="login-title">Bem-vindo de volta</div>

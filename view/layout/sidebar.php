@@ -16,7 +16,7 @@ function sidebarLink(string $href, string $icon, string $label, string $pageKey)
 
     <div class="sidebar-brand">
         <div class="brand-icon"><i class="fas fa-cash-register"></i></div>
-        <h5>PDV System</h5>
+        <h5>ChefePDV</h5>
         <small>v1.0</small>
     </div>
 

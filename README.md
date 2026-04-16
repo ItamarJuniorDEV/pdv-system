@@ -1,4 +1,4 @@
-# PDV System
+# ChefePDV
 
 Sistema de ponto de venda desenvolvido em PHP puro, sem frameworks externos.
 
