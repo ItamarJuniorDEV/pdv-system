@@ -88,34 +88,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login-cover-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(67,97,238,.75) 0%, rgba(58,12,163,.65) 100%);
+            background: linear-gradient(160deg, rgba(58,12,163,.55) 0%, rgba(67,97,238,.8) 100%);
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 48px;
+            justify-content: center;
+            padding: 56px 52px;
+        }
+
+        .login-cover-tag {
+            display: inline-block;
+            background: rgba(255,255,255,.15);
+            color: rgba(255,255,255,.9);
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            border-radius: 20px;
+            padding: 4px 14px;
+            margin-bottom: 24px;
+            width: fit-content;
         }
 
         .login-cover-quote {
             color: white;
-            font-size: 1.35rem;
-            font-weight: 600;
-            line-height: 1.4;
-            max-width: 380px;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 360px;
         }
 
         .login-cover-sub {
-            color: rgba(255,255,255,.7);
-            font-size: .85rem;
-            margin-top: 8px;
+            color: rgba(255,255,255,.65);
+            font-size: .9rem;
+            margin-top: 16px;
+            max-width: 320px;
+            line-height: 1.6;
         }
 
         .login-panel {
             width: 100%;
-            max-width: 460px;
+            max-width: 480px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 48px 40px;
+            padding: 60px 48px;
             background: #fff;
         }
 
@@ -127,13 +143,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 36px;
+            gap: 10px;
+            margin-bottom: 40px;
         }
 
         .login-logo img {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
         }
 
         .login-logo-name {
@@ -199,10 +215,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="login-cover">
         <div class="login-cover-overlay">
+            <div class="login-cover-tag">Ponto de Venda</div>
             <div class="login-cover-quote">
                 Controle de vendas, estoque e caixa em um só lugar.
             </div>
-            <div class="login-cover-sub">PDV System &mdash; gestão simples para o dia a dia do varejo</div>
+            <div class="login-cover-sub">Gestão simples para o dia a dia do varejo brasileiro.</div>
         </div>
     </div>
 
