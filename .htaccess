@@ -16,5 +16,5 @@ php_value error_reporting  E_ALL
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteRule ^(config|dao|model|controller|view|tests|vendor)/.*$ - [F,L]
+    RewriteRule ^(config|dao|model|controller|service|view|tests|vendor)/.*$ - [F,L]
 </IfModule>

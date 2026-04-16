@@ -24,8 +24,15 @@ CREATE TABLE clientes (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     nome       VARCHAR(150) NOT NULL,
     cpf        VARCHAR(14),
+    cnpj       VARCHAR(18),
     email      VARCHAR(150),
     telefone   VARCHAR(20),
+    cep        VARCHAR(9),
+    logradouro VARCHAR(200),
+    numero     VARCHAR(10),
+    bairro     VARCHAR(100),
+    cidade     VARCHAR(100),
+    uf         CHAR(2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

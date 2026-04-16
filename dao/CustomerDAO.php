@@ -55,31 +55,40 @@ class CustomerDAO
     public function insert(array $data): int
     {
         $stmt = $this->pdo->prepare(
-            'INSERT INTO clientes (nome, cpf, email, telefone)
-             VALUES (:nome, :cpf, :email, :telefone)'
+            'INSERT INTO clientes (nome, cpf, cnpj, email, telefone, cep, logradouro, numero, bairro, cidade, uf)
+             VALUES (:nome, :cpf, :cnpj, :email, :telefone, :cep, :logradouro, :numero, :bairro, :cidade, :uf)'
         );
-        $stmt->execute([
-            ':nome'     => $data['nome'],
-            ':cpf'      => $data['cpf'] ?? '',
-            ':email'    => $data['email'] ?? '',
-            ':telefone' => $data['telefone'] ?? '',
-        ]);
+        $stmt->execute($this->bind($data));
         return (int) $this->pdo->lastInsertId();
     }
 
     public function update(int $id, array $data): bool
     {
         $stmt = $this->pdo->prepare(
-            'UPDATE clientes SET nome = :nome, cpf = :cpf, email = :email, telefone = :telefone
+            'UPDATE clientes
+             SET nome = :nome, cpf = :cpf, cnpj = :cnpj, email = :email, telefone = :telefone,
+                 cep = :cep, logradouro = :logradouro, numero = :numero, bairro = :bairro,
+                 cidade = :cidade, uf = :uf
              WHERE id = :id'
         );
-        return $stmt->execute([
-            ':nome'     => $data['nome'],
-            ':cpf'      => $data['cpf'] ?? '',
-            ':email'    => $data['email'] ?? '',
-            ':telefone' => $data['telefone'] ?? '',
-            ':id'       => $id,
-        ]);
+        return $stmt->execute($this->bind($data) + [':id' => $id]);
+    }
+
+    private function bind(array $d): array
+    {
+        return [
+            ':nome'       => $d['nome'],
+            ':cpf'        => $d['cpf']        ?? '',
+            ':cnpj'       => $d['cnpj']       ?? '',
+            ':email'      => $d['email']      ?? '',
+            ':telefone'   => $d['telefone']   ?? '',
+            ':cep'        => $d['cep']        ?? '',
+            ':logradouro' => $d['logradouro'] ?? '',
+            ':numero'     => $d['numero']     ?? '',
+            ':bairro'     => $d['bairro']     ?? '',
+            ':cidade'     => $d['cidade']     ?? '',
+            ':uf'         => $d['uf']         ?? '',
+        ];
     }
 
     public function delete(int $id): bool

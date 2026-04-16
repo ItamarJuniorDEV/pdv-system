@@ -13,7 +13,8 @@
             "config/",
             "model/",
             "dao/",
-            "controller/"
+            "controller/",
+            "service/"
         ]
     },
     "autoload-dev": {

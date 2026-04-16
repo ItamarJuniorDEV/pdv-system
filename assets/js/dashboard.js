@@ -4,6 +4,7 @@ $(function () {
     $('#dash-data-hoje').text(hoje.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }));
 
     carregarDashboard();
+    carregarFeriados();
 
     function carregarDashboard() {
         $.getJSON(AJAX_URL + 'dashboard.php', { action: 'summary' }, function (res) {
@@ -98,6 +99,34 @@ $(function () {
             html += '</tr>';
         });
         $('#dash-recent-tbody').html(html);
+    }
+
+    function carregarFeriados() {
+        $.getJSON(AJAX_URL + 'integrations.php', { action: 'feriados' }, function (res) {
+            if (!res.success || !res.data.length) {
+                $('#dash-feriados').html('<p class="text-muted small mb-0">Nenhum feriado encontrado.</p>');
+                return;
+            }
+            const nomes = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+            let html = '<div class="row g-2">';
+            $.each(res.data, function (i, f) {
+                const partes = f.date.split('-');
+                const dia    = partes[2];
+                const mes    = nomes[parseInt(partes[1], 10) - 1];
+                html += '<div class="col-sm-6 col-lg">';
+                html += '<div class="d-flex align-items-center gap-2 p-2 rounded" style="background:#f8f9fa">';
+                html += '<div class="text-center px-2 py-1 rounded bg-primary text-white" style="min-width:44px;line-height:1.1">';
+                html += '<div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.05em">' + mes + '</div>';
+                html += '<div class="fw-bold">' + dia + '</div>';
+                html += '</div>';
+                html += '<div class="small fw-semibold lh-sm">' + escHtml(f.name) + '</div>';
+                html += '</div></div>';
+            });
+            html += '</div>';
+            $('#dash-feriados').html(html);
+        }).fail(function () {
+            $('#dash-feriados').html('<p class="text-muted small mb-0">Não foi possível carregar os feriados.</p>');
+        });
     }
 
     function moeda(v) {

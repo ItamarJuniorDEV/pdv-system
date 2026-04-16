@@ -98,6 +98,18 @@ require BASE_PATH . '/view/layout/header.php';
     </div>
 </div>
 
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-header bg-transparent border-bottom-0 pt-3 pb-0">
+        <h6 class="mb-0 fw-semibold">Próximos feriados nacionais</h6>
+    </div>
+    <div class="card-body" id="dash-feriados">
+        <div class="text-center text-muted py-2">
+            <div class="spinner-border spinner-border-sm text-primary mb-1"></div>
+            <div class="small">Carregando...</div>
+        </div>
+    </div>
+</div>
+
 <div class="card border-0 shadow-sm">
     <div class="card-header bg-transparent border-bottom-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
         <h6 class="mb-0 fw-semibold">Últimas vendas</h6>

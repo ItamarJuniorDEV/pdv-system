@@ -104,10 +104,58 @@ $(function () {
                 let c = res.data;
                 $('#nome').val(c.nome);
                 $('#cpf').val(c.cpf);
+                $('#cnpj').val(c.cnpj);
                 $('#email').val(c.email);
                 $('#telefone').val(c.telefone);
+                $('#cep').val(c.cep);
+                $('#logradouro').val(c.logradouro);
+                $('#numero').val(c.numero);
+                $('#bairro').val(c.bairro);
+                $('#cidade').val(c.cidade);
+                $('#uf').val(c.uf);
             });
         }
+
+        $('#cep').on('blur', function () {
+            const cep = $(this).val().replace(/\D/g, '');
+            if (cep.length !== 8) return;
+
+            const $input = $(this).prop('disabled', true);
+            $.getJSON(AJAX_URL + 'integrations.php', { action: 'cep', cep: cep }, function (res) {
+                if (!res.success) { showToast('CEP não encontrado.', 'warning'); return; }
+                const d = res.data;
+                $('#logradouro').val(d.logradouro);
+                $('#bairro').val(d.bairro);
+                $('#cidade').val(d.cidade);
+                $('#uf').val(d.uf.toUpperCase());
+                $('#numero').trigger('focus');
+            }).always(function () { $input.prop('disabled', false); });
+        });
+
+        $('#btn-buscar-cnpj').on('click', function () {
+            const cnpj = $('#cnpj').val().replace(/\D/g, '');
+            if (cnpj.length !== 14) { showToast('Informe um CNPJ com 14 dígitos.', 'warning'); return; }
+
+            const $btn = $(this).prop('disabled', true)
+                                .html('<span class="spinner-border spinner-border-sm me-1"></span>Buscando...');
+
+            $.getJSON(AJAX_URL + 'integrations.php', { action: 'cnpj', cnpj: cnpj }, function (res) {
+                if (!res.success) { showToast(res.message || 'CNPJ não encontrado.', 'warning'); return; }
+                const d = res.data;
+                if (d.nome)       $('#nome').val(d.nome);
+                if (d.email)      $('#email').val(d.email);
+                if (d.telefone)   $('#telefone').val(d.telefone);
+                if (d.logradouro) $('#logradouro').val(d.logradouro);
+                if (d.numero)     $('#numero').val(d.numero);
+                if (d.bairro)     $('#bairro').val(d.bairro);
+                if (d.cidade)     $('#cidade').val(d.cidade);
+                if (d.uf)         $('#uf').val(d.uf.toUpperCase());
+                if (d.cep)        $('#cep').val(d.cep);
+                showToast('Dados preenchidos a partir do CNPJ.', 'success');
+            }).always(function () {
+                $btn.prop('disabled', false).html('<i class="fas fa-magnifying-glass me-1"></i>Buscar');
+            });
+        });
 
         $('#form-cliente').on('submit', function (e) {
             e.preventDefault();
@@ -117,12 +165,19 @@ $(function () {
                                       .html('<span class="spinner-border spinner-border-sm me-1"></span>Salvando...');
 
             let dados = {
-                action:   id > 0 ? 'update' : 'insert',
-                id:       id,
-                nome:     $('#nome').val().trim(),
-                cpf:      $('#cpf').val().trim(),
-                email:    $('#email').val().trim(),
-                telefone: $('#telefone').val().trim()
+                action:     id > 0 ? 'update' : 'insert',
+                id:         id,
+                nome:       $('#nome').val().trim(),
+                cpf:        $('#cpf').val().trim(),
+                cnpj:       $('#cnpj').val().trim(),
+                email:      $('#email').val().trim(),
+                telefone:   $('#telefone').val().trim(),
+                cep:        $('#cep').val().trim(),
+                logradouro: $('#logradouro').val().trim(),
+                numero:     $('#numero').val().trim(),
+                bairro:     $('#bairro').val().trim(),
+                cidade:     $('#cidade').val().trim(),
+                uf:         $('#uf').val().trim().toUpperCase()
             };
 
             $.post(AJAX_URL + 'customer.php', dados, function (res) {
