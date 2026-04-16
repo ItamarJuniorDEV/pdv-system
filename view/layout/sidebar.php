@@ -28,7 +28,7 @@ function sidebarLink(string $href, string $icon, string $label, string $pageKey)
         <div class="sidebar-section">Operações</div>
         <?= sidebarLink('?p=pos&a=cashier',      'cash-register', 'Frente de Caixa', 'pos_cashier') ?>
         <?= sidebarLink('?p=sale&a=history',     'receipt',       'Vendas',          'sale_history') ?>
-        <?= sidebarLink('?p=cashregister&a=index','drawer',       'Caixa',           'cashregister_index') ?>
+        <?= sidebarLink('?p=cashregister&a=index','coins',         'Caixa',           'cashregister_index') ?>
 
         <div class="sidebar-section">Cadastros</div>
         <?= sidebarLink('?p=product&a=list',     'boxes',         'Produtos',        'product_list') ?>
@@ -36,7 +36,7 @@ function sidebarLink(string $href, string $icon, string $label, string $pageKey)
         <?= sidebarLink('?p=customer&a=list',    'users',         'Clientes',        'customer_list') ?>
 
         <div class="sidebar-section">Relatórios</div>
-        <?= sidebarLink('?p=report&a=index',     'file-chart-column', 'Relatórios',  'report_index') ?>
+        <?= sidebarLink('?p=report&a=index',     'chart-bar',     'Relatórios',      'report_index') ?>
 
     </div>
 
