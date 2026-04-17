@@ -1,5 +1,7 @@
 # ChefePDV
 
+![CI](https://github.com/ItamarJuniorDEV/pdv-system-php/actions/workflows/ci.yml/badge.svg)
+
 Sistema de ponto de venda desenvolvido em PHP puro, sem frameworks externos.
 
 Grande parte do mercado de varejo brasileiro ainda opera com sistemas legados em PHP puro — sem framework, sem ORM, com jQuery no frontend. Quis entender esse modelo de ponta a ponta e construir algo nesse perfil, mas com arquitetura em camadas, segurança real e código que se sustenta. A restrição de não usar framework foi intencional: é o cenário que aparece na prática, e saber trabalhar dentro dele faz diferença.
