@@ -28,12 +28,15 @@ switch ($action) {
         echo $ctrl->finalize($_POST);
         break;
     case 'cancel':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->cancel((int) ($_POST['id'] ?? 0));
         break;
     case 'history':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->history($_GET);
         break;
     case 'detail':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->detail((int) ($_GET['id'] ?? 0));
         break;
     default:

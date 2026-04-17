@@ -14,6 +14,7 @@ require_once BASE_PATH . '/config/Database.php';
 require_once BASE_PATH . '/dao/ReportDAO.php';
 
 Guard::requireAjax();
+Guard::requireRole('admin', 'gerente');
 
 $dao    = new ReportDAO();
 $action = $_GET['action'] ?? '';

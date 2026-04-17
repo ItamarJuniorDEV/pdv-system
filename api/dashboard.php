@@ -15,6 +15,7 @@ require_once BASE_PATH . '/dao/DashboardDAO.php';
 require_once BASE_PATH . '/controller/DashboardController.php';
 
 Guard::requireAjax();
+Guard::requireRole('admin', 'gerente');
 
 $action = $_GET['action'] ?? '';
 $ctrl   = new DashboardController();

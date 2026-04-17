@@ -24,12 +24,15 @@ switch ($action) {
         echo $ctrl->status();
         break;
     case 'open':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->open($_POST);
         break;
     case 'close':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->close($_POST);
         break;
     case 'history':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->history();
         break;
     default:
