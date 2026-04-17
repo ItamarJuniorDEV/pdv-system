@@ -20,4 +20,13 @@ class Guard
             exit;
         }
     }
+
+    public static function requireRole(string ...$roles): void
+    {
+        if (!Auth::can(...$roles)) {
+            http_response_code(403);
+            echo json_encode(['success' => false, 'message' => 'Permissão insuficiente.']);
+            exit;
+        }
+    }
 }

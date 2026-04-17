@@ -25,9 +25,10 @@ class Auth
     {
         session_regenerate_id(true);
         $_SESSION[self::$sessionKey] = [
-            'id'    => $user['id'],
-            'nome'  => $user['nome'],
-            'email' => $user['email'],
+            'id'     => $user['id'],
+            'nome'   => $user['nome'],
+            'email'  => $user['email'],
+            'perfil' => $user['perfil'] ?? 'operador',
         ];
     }
 
@@ -46,6 +47,21 @@ class Auth
     public static function user(): ?array
     {
         return $_SESSION[self::$sessionKey] ?? null;
+    }
+
+    public static function role(): string
+    {
+        return $_SESSION[self::$sessionKey]['perfil'] ?? 'operador';
+    }
+
+    public static function isAdmin(): bool
+    {
+        return self::role() === 'admin';
+    }
+
+    public static function can(string ...$roles): bool
+    {
+        return in_array(self::role(), $roles, true);
     }
 
     public static function require(): void

@@ -76,6 +76,7 @@ CREATE TABLE usuarios (
     nome       VARCHAR(100) NOT NULL,
     email      VARCHAR(150) NOT NULL UNIQUE,
     senha      VARCHAR(255) NOT NULL,
+    perfil     ENUM('admin','gerente','operador') NOT NULL DEFAULT 'operador',
     ativo      TINYINT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -107,5 +108,5 @@ CREATE TABLE login_attempts (
     INDEX idx_ip_created (ip, created_at)
 );
 
-INSERT INTO usuarios (nome, email, senha) VALUES
-('Administrador', 'admin@pdv.com', '$2y$12$8usbO.d06EUO1njl1qC.f.QG42w69.fxzZ6M1UU5w21duPmCq3dhy');
+INSERT INTO usuarios (nome, email, senha, perfil) VALUES
+('Administrador', 'admin@pdv.com', '$2y$12$8usbO.d06EUO1njl1qC.f.QG42w69.fxzZ6M1UU5w21duPmCq3dhy', 'admin');
