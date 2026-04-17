@@ -32,6 +32,19 @@ $views = [
     'sale'        => ['history' => 'view/sale/history.php'],
     'cashregister'=> ['index'   => 'view/cashregister/index.php'],
     'report'      => ['index'   => 'view/report/index.php'],
+    'user'        => ['index'   => 'view/user/index.php'],
+];
+
+$pageRoles = [
+    'dashboard'    => ['admin', 'gerente'],
+    'pos'          => ['admin', 'gerente', 'operador'],
+    'product'      => ['admin', 'gerente'],
+    'category'     => ['admin', 'gerente'],
+    'customer'     => ['admin', 'gerente', 'operador'],
+    'sale'         => ['admin', 'gerente'],
+    'cashregister' => ['admin', 'gerente'],
+    'report'       => ['admin', 'gerente'],
+    'user'         => ['admin'],
 ];
 
 if (!isset($views[$page])) {
@@ -44,6 +57,12 @@ if (!isset($views[$page])) {
        . '<a href="/" class="btn btn-outline-secondary btn-sm mt-2">Voltar ao início</a>'
        . '</div>';
     require BASE_PATH . '/view/layout/footer.php';
+    exit;
+}
+
+$allowed = $pageRoles[$page] ?? ['admin'];
+if (!Auth::can(...$allowed)) {
+    header('Location: /?p=pos&a=cashier');
     exit;
 }
 
