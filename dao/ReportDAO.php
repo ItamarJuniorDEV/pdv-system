@@ -63,4 +63,57 @@ class ReportDAO
         $stmt->execute([':ini' => $dataIni, ':fim' => $dataFim]);
         return $stmt->fetchAll();
     }
+
+    public function generalSummary(string $dataIni, string $dataFim): array
+    {
+        $params = [':ini' => $dataIni, ':fim' => $dataFim];
+
+        $stmt = $this->pdo->prepare(
+            'SELECT
+                COUNT(CASE WHEN status = "concluida" THEN 1 END) AS qtd_vendas,
+                COUNT(CASE WHEN status = "cancelada" THEN 1 END) AS qtd_canceladas,
+                COALESCE(SUM(CASE WHEN status = "concluida" THEN total END), 0)   AS faturamento,
+                COALESCE(SUM(CASE WHEN status = "concluida" THEN desconto END), 0) AS descontos,
+                COALESCE(AVG(CASE WHEN status = "concluida" THEN total END), 0)   AS ticket_medio
+             FROM vendas
+             WHERE DATE(created_at) BETWEEN :ini AND :fim'
+        );
+        $stmt->execute($params);
+        $vendas = $stmt->fetch();
+
+        $stmt = $this->pdo->prepare(
+            'SELECT forma_pagamento, COUNT(*) AS qtd, SUM(total) AS total
+             FROM vendas
+             WHERE status = "concluida" AND DATE(created_at) BETWEEN :ini AND :fim
+             GROUP BY forma_pagamento ORDER BY total DESC'
+        );
+        $stmt->execute($params);
+        $pagamentos = $stmt->fetchAll();
+
+        $stmt = $this->pdo->prepare(
+            'SELECT p.nome, SUM(vi.quantidade) AS qty, SUM(vi.subtotal) AS valor
+             FROM venda_itens vi
+             JOIN vendas v   ON v.id = vi.venda_id
+             JOIN produtos p ON p.id = vi.produto_id
+             WHERE v.status = "concluida" AND DATE(v.created_at) BETWEEN :ini AND :fim
+             GROUP BY p.id ORDER BY qty DESC LIMIT 5'
+        );
+        $stmt->execute($params);
+        $topProdutos = $stmt->fetchAll();
+
+        $stmt = $this->pdo->query(
+            'SELECT
+                COUNT(*) AS total,
+                SUM(CASE WHEN estoque = 0 THEN 1 ELSE 0 END) AS zerados,
+                SUM(CASE WHEN estoque > 0 AND estoque <= estoque_minimo THEN 1 ELSE 0 END) AS criticos,
+                SUM(CASE WHEN estoque > estoque_minimo THEN 1 ELSE 0 END) AS ok
+             FROM produtos WHERE ativo = 1'
+        );
+        $estoque = $stmt->fetch();
+
+        $stmt = $this->pdo->query('SELECT COUNT(*) AS total FROM clientes');
+        $clientes = $stmt->fetch();
+
+        return compact('vendas', 'pagamentos', 'topProdutos', 'estoque', 'clientes');
+    }
 }

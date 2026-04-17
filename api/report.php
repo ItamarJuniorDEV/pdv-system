@@ -33,6 +33,10 @@ switch ($action) {
         echo Response::ok($dao->paymentSummary($ini, $fim));
         break;
 
+    case 'geral':
+        echo Response::ok($dao->generalSummary($ini, $fim));
+        break;
+
     default:
         echo Response::error('Ação inválida.');
 }
