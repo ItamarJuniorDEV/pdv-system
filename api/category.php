@@ -28,12 +28,15 @@ switch ($action) {
         echo $ctrl->findById((int) ($_GET['id'] ?? 0));
         break;
     case 'insert':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->insert($_POST);
         break;
     case 'update':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->update($_POST);
         break;
     case 'delete':
+        Guard::requireRole('admin', 'gerente');
         echo $ctrl->delete((int) ($_POST['id'] ?? 0));
         break;
     default:

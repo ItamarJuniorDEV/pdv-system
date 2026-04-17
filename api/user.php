@@ -27,6 +27,7 @@ switch ($action) {
     case 'get':
         $id  = (int) ($_GET['id'] ?? 0);
         $row = $dao->findById($id);
+        if ($row) { unset($row['senha']); }
         echo $row ? Response::ok($row) : Response::error('Usuário não encontrado.');
         break;
 
