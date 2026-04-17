@@ -267,6 +267,15 @@ $(function () {
     $('#btn-finalizar').on('click', function () {
         if (!cart.items.length) { toast('Adicione itens ao carrinho.', 'warning'); return; }
 
+        if (cart.paymentMethod === 'dinheiro') {
+            const received = parseFloat($('#input-recebido').val()) || 0;
+            if (received < cart.total) {
+                toast('Valor recebido insuficiente para cobrir o total.', 'warning');
+                $('#input-recebido').trigger('focus');
+                return;
+            }
+        }
+
         let $btn = $(this)
             .prop('disabled', true)
             .html('<span class="spinner-border spinner-border-sm me-2"></span>Processando...');
