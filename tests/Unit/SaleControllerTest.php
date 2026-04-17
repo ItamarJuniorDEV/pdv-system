@@ -75,6 +75,7 @@ class SaleControllerTest extends TestCase
     {
         $pdo = $this->getDbInstance();
         $pdo->exec('CREATE TABLE caixas (id INTEGER PRIMARY KEY, status TEXT)');
+        $pdo->exec("INSERT INTO caixas (id, status) VALUES (1, 'aberto')");
 
         $ctrl = new SaleController();
         $res  = $this->decode($ctrl->finalize([
@@ -90,6 +91,7 @@ class SaleControllerTest extends TestCase
     {
         $pdo = $this->getDbInstance();
         $pdo->exec('CREATE TABLE caixas (id INTEGER PRIMARY KEY, status TEXT)');
+        $pdo->exec("INSERT INTO caixas (id, status) VALUES (1, 'aberto')");
 
         $ctrl = new SaleController();
         $res  = $this->decode($ctrl->finalize([

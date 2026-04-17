@@ -86,4 +86,51 @@ class AuthTest extends TestCase
         $this->assertSame(3, $user['id']);
         $this->assertSame('Marcos', $user['nome']);
     }
+
+    public function testRoleReturnsOperadorWhenSessionHasNoProfile(): void
+    {
+        $_SESSION['pdv_user'] = ['id' => 1, 'nome' => 'Sem Perfil', 'email' => 'x@pdv.com'];
+
+        $this->assertSame('operador', Auth::role());
+    }
+
+    public function testRoleReturnsStoredProfile(): void
+    {
+        $_SESSION['pdv_user'] = ['id' => 2, 'nome' => 'Gerente', 'email' => 'g@pdv.com', 'perfil' => 'gerente'];
+
+        $this->assertSame('gerente', Auth::role());
+    }
+
+    public function testIsAdminReturnsTrueForAdminProfile(): void
+    {
+        $_SESSION['pdv_user'] = ['id' => 1, 'nome' => 'Admin', 'email' => 'a@pdv.com', 'perfil' => 'admin'];
+
+        $this->assertTrue(Auth::isAdmin());
+    }
+
+    public function testIsAdminReturnsFalseForOperadorProfile(): void
+    {
+        $_SESSION['pdv_user'] = ['id' => 5, 'nome' => 'Op', 'email' => 'op@pdv.com', 'perfil' => 'operador'];
+
+        $this->assertFalse(Auth::isAdmin());
+    }
+
+    public function testCanReturnsTrueWhenProfileIsInList(): void
+    {
+        $_SESSION['pdv_user'] = ['id' => 2, 'nome' => 'Gerente', 'email' => 'g@pdv.com', 'perfil' => 'gerente'];
+
+        $this->assertTrue(Auth::can('admin', 'gerente'));
+    }
+
+    public function testCanReturnsFalseWhenProfileNotInList(): void
+    {
+        $_SESSION['pdv_user'] = ['id' => 5, 'nome' => 'Op', 'email' => 'op@pdv.com', 'perfil' => 'operador'];
+
+        $this->assertFalse(Auth::can('admin', 'gerente'));
+    }
+
+    public function testCanReturnsFalseWhenSessionEmpty(): void
+    {
+        $this->assertFalse(Auth::can('admin'));
+    }
 }

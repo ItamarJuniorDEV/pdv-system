@@ -67,7 +67,8 @@ class CustomerControllerTest extends TestCase
         $pdo = $this->getDbInstance();
         $pdo->exec('CREATE TABLE clientes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT, cpf TEXT, email TEXT, telefone TEXT,
+            nome TEXT, cpf TEXT, cnpj TEXT, email TEXT, telefone TEXT,
+            cep TEXT, logradouro TEXT, numero TEXT, bairro TEXT, cidade TEXT, uf TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )');
 
