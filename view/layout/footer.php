@@ -22,7 +22,8 @@
 </script>
 
 <?php if (!empty($pageScript)): ?>
-<script src="<?= BASE_URL ?>/<?= htmlspecialchars($pageScript) ?>"></script>
+<?php $scriptPath = BASE_PATH . '/' . $pageScript; ?>
+<script src="<?= BASE_URL ?>/<?= htmlspecialchars($pageScript) ?>?v=<?= file_exists($scriptPath) ? filemtime($scriptPath) : '1' ?>"></script>
 <?php endif; ?>
 
 </body>
