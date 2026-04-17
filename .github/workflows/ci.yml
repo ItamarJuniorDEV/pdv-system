@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '7.4'
       - name: Instalar dependências
         run: composer install --no-interaction --prefer-dist
       - name: Rodar testes
