@@ -10,6 +10,17 @@ O sistema cobre o fluxo completo de operação de um PDV: autenticação com con
 
 ---
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Login](assets/img/1.login.png) | ![Frente de Caixa](assets/img/3.FrenteCaixa.png) |
+| ![Dashboard](assets/img/2.dashboard.png) | ![Relatórios](assets/img/5.relatorios.png) |
+
+![Usuários](assets/img/4.usuarios.png)
+
+---
+
 ## Funcionalidades
 
 ### Operações de Caixa
