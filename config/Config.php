@@ -12,10 +12,10 @@ class Config
     {
         $env = self::readEnvFile();
 
-        self::$dbHost    = self::resolve('DB_HOST',    $env, 'localhost');
-        self::$dbName    = self::resolve('DB_NAME',    $env, 'pdv');
-        self::$dbUser    = self::resolve('DB_USER',    $env, 'root');
-        self::$dbPass    = self::resolve('DB_PASS',    $env, '');
+        self::$dbHost    = self::resolve('DB_HOST', $env, 'localhost');
+        self::$dbName    = self::resolve('DB_NAME', $env, 'pdv');
+        self::$dbUser    = self::resolve('DB_USER', $env, 'root');
+        self::$dbPass    = self::resolve('DB_PASS', $env, '');
         self::$dbCharset = self::resolve('DB_CHARSET', $env, 'utf8mb4');
     }
 

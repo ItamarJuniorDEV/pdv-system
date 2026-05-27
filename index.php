@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 define('BASE_PATH', __DIR__);
@@ -14,7 +15,10 @@ Auth::require();
 spl_autoload_register(function (string $class): void {
     foreach (['config', 'model', 'dao', 'controller'] as $dir) {
         $f = BASE_PATH . "/$dir/$class.php";
-        if (file_exists($f)) { require_once $f; return; }
+        if (file_exists($f)) {
+            require_once $f;
+            return;
+        }
     }
 });
 
@@ -30,7 +34,7 @@ $views = [
     'customer'    => ['list'    => 'view/customer/list.php',
                       'form'    => 'view/customer/form.php'],
     'sale'        => ['history' => 'view/sale/history.php'],
-    'cashregister'=> ['index'   => 'view/cashregister/index.php'],
+    'cashregister' => ['index'   => 'view/cashregister/index.php'],
     'report'      => ['index'   => 'view/report/index.php'],
     'user'        => ['index'   => 'view/user/index.php'],
 ];

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 class BrasilApiService
@@ -8,7 +9,7 @@ class BrasilApiService
         $hoje    = date('Y-m-d');
         $feriados = $this->fetchAno((int) date('Y'));
 
-        $proximos = array_values(array_filter($feriados, fn($f) => $f['date'] >= $hoje));
+        $proximos = array_values(array_filter($feriados, fn ($f) => $f['date'] >= $hoje));
 
         if (count($proximos) < $limite) {
             $proxAno  = $this->fetchAno((int) date('Y') + 1);

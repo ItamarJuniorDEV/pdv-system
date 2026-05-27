@@ -2,15 +2,15 @@
 
 class Sale
 {
-    const STATUS_COMPLETED = 'concluida';
-    const STATUS_CANCELLED = 'cancelada';
+    public const STATUS_COMPLETED = 'concluida';
+    public const STATUS_CANCELLED = 'cancelada';
 
-    const PAYMENT_CASH   = 'dinheiro';
-    const PAYMENT_CREDIT = 'cartao_credito';
-    const PAYMENT_DEBIT  = 'cartao_debito';
-    const PAYMENT_PIX    = 'pix';
+    public const PAYMENT_CASH   = 'dinheiro';
+    public const PAYMENT_CREDIT = 'cartao_credito';
+    public const PAYMENT_DEBIT  = 'cartao_debito';
+    public const PAYMENT_PIX    = 'pix';
 
-    const PAYMENT_METHODS = [
+    public const PAYMENT_METHODS = [
         self::PAYMENT_CASH,
         self::PAYMENT_CREDIT,
         self::PAYMENT_DEBIT,

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 
@@ -27,7 +28,9 @@ switch ($action) {
     case 'get':
         $id  = (int) ($_GET['id'] ?? 0);
         $row = $dao->findById($id);
-        if ($row) { unset($row['senha']); }
+        if ($row) {
+            unset($row['senha']);
+        }
         echo $row ? Response::ok($row) : Response::error('Usuário não encontrado.');
         break;
 

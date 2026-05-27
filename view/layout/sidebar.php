@@ -24,31 +24,31 @@ function sidebarLink(string $href, string $icon, string $label, string $pageKey)
 
         <?php if (Auth::can('admin', 'gerente')): ?>
         <div class="sidebar-section">Visão Geral</div>
-        <?= sidebarLink('?p=dashboard&a=index', 'chart-line',    'Dashboard',       'dashboard_index') ?>
+        <?= sidebarLink('?p=dashboard&a=index', 'chart-line', 'Dashboard', 'dashboard_index') ?>
         <?php endif; ?>
 
         <div class="sidebar-section">Operações</div>
-        <?= sidebarLink('?p=pos&a=cashier',      'cash-register', 'Frente de Caixa', 'pos_cashier') ?>
+        <?= sidebarLink('?p=pos&a=cashier', 'cash-register', 'Frente de Caixa', 'pos_cashier') ?>
         <?php if (Auth::can('admin', 'gerente')): ?>
-        <?= sidebarLink('?p=sale&a=history',     'receipt',       'Vendas',          'sale_history') ?>
-        <?= sidebarLink('?p=cashregister&a=index','coins',         'Caixa',           'cashregister_index') ?>
+        <?= sidebarLink('?p=sale&a=history', 'receipt', 'Vendas', 'sale_history') ?>
+        <?= sidebarLink('?p=cashregister&a=index', 'coins', 'Caixa', 'cashregister_index') ?>
         <?php endif; ?>
 
         <?php if (Auth::can('admin', 'gerente')): ?>
         <div class="sidebar-section">Cadastros</div>
-        <?= sidebarLink('?p=product&a=list',     'boxes',         'Produtos',        'product_list') ?>
-        <?= sidebarLink('?p=category&a=list',    'tags',          'Categorias',      'category_list') ?>
+        <?= sidebarLink('?p=product&a=list', 'boxes', 'Produtos', 'product_list') ?>
+        <?= sidebarLink('?p=category&a=list', 'tags', 'Categorias', 'category_list') ?>
         <?php endif; ?>
-        <?= sidebarLink('?p=customer&a=list',    'users',         'Clientes',        'customer_list') ?>
+        <?= sidebarLink('?p=customer&a=list', 'users', 'Clientes', 'customer_list') ?>
 
         <?php if (Auth::can('admin', 'gerente')): ?>
         <div class="sidebar-section">Relatórios</div>
-        <?= sidebarLink('?p=report&a=index',     'chart-bar',     'Relatórios',      'report_index') ?>
+        <?= sidebarLink('?p=report&a=index', 'chart-bar', 'Relatórios', 'report_index') ?>
         <?php endif; ?>
 
         <?php if (Auth::can('admin')): ?>
         <div class="sidebar-section">Configurações</div>
-        <?= sidebarLink('?p=user&a=index',       'user-gear',     'Usuários',        'user_index') ?>
+        <?= sidebarLink('?p=user&a=index', 'user-gear', 'Usuários', 'user_index') ?>
         <?php endif; ?>
 
     </div>

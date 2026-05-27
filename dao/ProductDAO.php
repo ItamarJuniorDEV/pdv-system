@@ -111,7 +111,7 @@ class ProductDAO
             ':nome'   => $data['nome'],
             ':codigo' => $data['codigo'] ?: null,
             ':preco'  => $data['preco'],
-            ':estoque'=> $data['estoque'] ?? 0,
+            ':estoque' => $data['estoque'] ?? 0,
             ':min'    => $data['estoque_minimo'] ?? 5,
             ':ativo'  => isset($data['ativo']) ? (int) $data['ativo'] : 1,
         ]);
@@ -131,7 +131,7 @@ class ProductDAO
             ':nome'   => $data['nome'],
             ':codigo' => $data['codigo'] ?: null,
             ':preco'  => $data['preco'],
-            ':estoque'=> $data['estoque'] ?? 0,
+            ':estoque' => $data['estoque'] ?? 0,
             ':min'    => $data['estoque_minimo'] ?? 5,
             ':ativo'  => isset($data['ativo']) ? (int) $data['ativo'] : 1,
             ':id'     => $id,
