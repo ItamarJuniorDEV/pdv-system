@@ -1,6 +1,6 @@
 # ChefePDV
 
-![CI](https://github.com/ItamarJuniorDEV/pdv-system/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/ItamarJuniorDEV/chefepdv-app/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 > Sistema de ponto de venda em PHP puro, sem framework: controle de caixa, estoque com baixa atômica, relatórios e gestão de acesso por perfil.
@@ -78,8 +78,8 @@ O ChefePDV cobre o ciclo completo de uma operação de caixa, da abertura ao fec
 Pré-requisito: Docker e Docker Compose.
 
 ```bash
-git clone https://github.com/ItamarJuniorDEV/pdv-system.git
-cd pdv-system
+git clone https://github.com/ItamarJuniorDEV/chefepdv-app.git
+cd chefepdv-app
 cp .env.example .env
 docker compose up -d
 ```
