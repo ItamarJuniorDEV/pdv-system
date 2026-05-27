@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Sale;
-use SaleItem;
 
 class SaleTest extends TestCase
 {
@@ -69,10 +69,10 @@ class SaleTest extends TestCase
 
     public function testAllFourPaymentMethodsAreRegistered(): void
     {
-        $this->assertContains('dinheiro',       Sale::PAYMENT_METHODS);
+        $this->assertContains('dinheiro', Sale::PAYMENT_METHODS);
         $this->assertContains('cartao_credito', Sale::PAYMENT_METHODS);
-        $this->assertContains('cartao_debito',  Sale::PAYMENT_METHODS);
-        $this->assertContains('pix',            Sale::PAYMENT_METHODS);
+        $this->assertContains('cartao_debito', Sale::PAYMENT_METHODS);
+        $this->assertContains('pix', Sale::PAYMENT_METHODS);
         $this->assertCount(4, Sale::PAYMENT_METHODS);
     }
 

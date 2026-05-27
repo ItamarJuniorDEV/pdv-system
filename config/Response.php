@@ -6,8 +6,12 @@ class Response
     {
         $payload = ['success' => true];
 
-        if ($data !== null)  $payload['data']    = $data;
-        if ($message !== '') $payload['message'] = $message;
+        if ($data !== null) {
+            $payload['data']    = $data;
+        }
+        if ($message !== '') {
+            $payload['message'] = $message;
+        }
 
         return json_encode($payload);
     }

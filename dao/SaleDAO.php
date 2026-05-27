@@ -33,8 +33,8 @@ class SaleDAO
             $stmtVenda->execute([
                 ':caixa'   => $sale->cashRegisterId ?: null,
                 ':cliente' => $sale->customerId ?: null,
-                ':subtotal'=> $sale->subtotal,
-                ':desconto'=> $sale->discount,
+                ':subtotal' => $sale->subtotal,
+                ':desconto' => $sale->discount,
                 ':total'   => $sale->total,
                 ':forma'   => $sale->paymentMethod,
                 ':status'  => Sale::STATUS_COMPLETED,
@@ -52,7 +52,7 @@ class SaleDAO
             foreach ($sale->items as $item) {
                 $stmtItem->execute([
                     ':venda'  => $saleId,
-                    ':produto'=> $item->productId,
+                    ':produto' => $item->productId,
                     ':qty'    => $item->quantity,
                     ':preco'  => $item->unitPrice,
                     ':sub'    => $item->subtotal,
